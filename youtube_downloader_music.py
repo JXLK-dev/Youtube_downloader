@@ -11,8 +11,8 @@ def run(video_url: str):
     )
     filename = f"{video_info['title']}.mp3"
     # to check if music existed
-    file_exists = os.path.exists(filename)
-    # "C:\\Users\\Jerry\\Desktop\\AllApps\\Songs\\{}".format(filename))
+    file_exists = os.path.exists(
+        "C:\\Users\\Jerry\\Desktop\\AllApps\\Songs\\{}".format(filename))
     options = {
         'format': 'bestaudio/best',
         'keepvideo': False,
@@ -27,6 +27,7 @@ def run(video_url: str):
             filename), "C:\\Users\\Jerry\\Desktop\\AllApps\\Songs\\{}".format(filename))
     else:
         print("Failed to download file\nfilename : {} has existed".format(filename))
+        filler = input("press enter to continue")
 
 
 def extract_text_file():
@@ -63,6 +64,8 @@ def chooseDownloadMethod():
                 print("Type \"exit\" to go back")
                 filename = input(
                     "Please input URL (Youtube Music) (Youtube) :\n")
+                if (filename == "exit"):
+                    break
                 run(filename)
                 os.system('cls')
         if (method == "3"):
