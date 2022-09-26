@@ -12,6 +12,7 @@ def run(video_url: str):
     filename = f"{video_info['title']}.mp3"
     # to check if music existed
     file_exists = os.path.exists(filename)
+    # "C:\\Users\\Jerry\\Desktop\\AllApps\\Songs\\{}".format(filename))
     options = {
         'format': 'bestaudio/best',
         'keepvideo': False,
@@ -22,7 +23,8 @@ def run(video_url: str):
             ydl.download([video_info['webpage_url']])
 
         print("Download complete... {}".format(filename))
-        shutil.move("", "")
+        shutil.move("C:\\Users\\Jerry\\Desktop\\AllApps\\somethingsus\\Youtube_downloader\\{}".format(
+            filename), "C:\\Users\\Jerry\\Desktop\\AllApps\\Songs\\{}".format(filename))
     else:
         print("Failed to download file\nfilename : {} has existed".format(filename))
 
@@ -51,12 +53,18 @@ def chooseDownloadMethod():
     while (True):
         print("1. Download music from the list_of_songs")
         print("2. Download music from input")
+        print("3. Exit")
         method = input("Please select input method: ")
         if (method == "1"):
             download_all_script()
         if (method == "2"):
-            filename = input("Please input URL (Youtube Music) (Youtube) :\n")
-            run(filename)
+            os.system('cls')
+            while (True):
+                print("Type \"exit\" to go back")
+                filename = input(
+                    "Please input URL (Youtube Music) (Youtube) :\n")
+                run(filename)
+                os.system('cls')
         if (method == "3"):
             return
         os.system('cls')
