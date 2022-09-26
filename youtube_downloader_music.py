@@ -1,5 +1,5 @@
 import os
-from numpy import choose
+import shutil
 import yt_dlp
 import fileinput
 import os.path
@@ -12,8 +12,6 @@ def run(video_url: str):
     filename = f"{video_info['title']}.mp3"
     # to check if music existed
     file_exists = os.path.exists(filename)
-    # print(file_exists)
-
     options = {
         'format': 'bestaudio/best',
         'keepvideo': False,
@@ -24,8 +22,9 @@ def run(video_url: str):
             ydl.download([video_info['webpage_url']])
 
         print("Download complete... {}".format(filename))
+        shutil.move("", "")
     else:
-        print("Failed to download file\n filename : {} has existed".format(filename))
+        print("Failed to download file\nfilename : {} has existed".format(filename))
 
 
 def extract_text_file():
