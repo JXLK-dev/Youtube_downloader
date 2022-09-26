@@ -39,6 +39,12 @@ def download_all_script():
     listofsongs = extract_text_file()
     for song in listofsongs:
         run(song)
+    deleteAllLinksInTextDocument("list_of_songs.txt")
+
+
+def deleteAllLinksInTextDocument(textDocument: str):
+    with open(textDocument, 'r+') as file:
+        file.truncate(0)
 
 
 if __name__ == '__main__':
