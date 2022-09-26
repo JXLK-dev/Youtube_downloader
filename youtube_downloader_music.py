@@ -1,4 +1,5 @@
 import os
+from numpy import choose
 import yt_dlp
 import fileinput
 import os.path
@@ -47,5 +48,20 @@ def deleteAllLinksInTextDocument(textDocument: str):
         file.truncate(0)
 
 
+def chooseDownloadMethod():
+    while (True):
+        print("1. Download music from the list_of_songs")
+        print("2. Download music from input")
+        method = input("Please select input method: ")
+        if (method == "1"):
+            download_all_script()
+        if (method == "2"):
+            filename = input("Please input URL (Youtube Music) (Youtube) :\n")
+            run(filename)
+        if (method == "3"):
+            return
+        os.system('cls')
+
+
 if __name__ == '__main__':
-    download_all_script()
+    chooseDownloadMethod()
