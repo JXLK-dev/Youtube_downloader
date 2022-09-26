@@ -4,6 +4,9 @@ import yt_dlp
 import fileinput
 import os.path
 
+sourceExecutable = ""
+songDestinationPath = ""
+
 
 def run(video_url: str):
     video_info = yt_dlp.YoutubeDL().extract_info(
@@ -23,8 +26,8 @@ def run(video_url: str):
             ydl.download([video_info['webpage_url']])
 
         print("Download complete... {}".format(filename))
-        shutil.move("C:\\Users\\Jerry\\Desktop\\AllApps\\somethingsus\\Youtube_downloader\\{}".format(
-            filename), "C:\\Users\\Jerry\\Desktop\\AllApps\\Songs\\{}".format(filename))
+        shutil.move("{}\\{}".format(sourceExecutable,
+                                    filename), "{}\\{}".format(songDestinationPath, filename))
     else:
         print("Failed to download file\nfilename : {} has existed".format(filename))
         filler = input("press enter to continue")
@@ -36,6 +39,16 @@ def extract_text_file():
     for line in file:
         listofsongs.append(line)
     return listofsongs
+
+
+def modifySource(method: int):
+    print()
+    if (method == 0):
+        filePath = input(
+            "Please enter the path that has youtube_downloader_music executable file: ")
+    else:
+        filePath = input("Please enter the path for downloaded songs: ")
+    return filePath
 
 
 def download_all_script():
@@ -54,7 +67,9 @@ def chooseDownloadMethod():
     while (True):
         print("1. Download music from the list_of_songs")
         print("2. Download music from input")
-        print("3. Exit")
+        print("3. Modify song path download")
+        print("4. Modify source executable python download path")
+        print("5. Exit")
         method = input("Please select input method: ")
         if (method == "1"):
             download_all_script()
@@ -69,6 +84,10 @@ def chooseDownloadMethod():
                 run(filename)
                 os.system('cls')
         if (method == "3"):
+            sourceExecutable = modifySource(1)
+        if (method == "4"):
+            songDestinationPath = modifySource(0)
+        if (method == "5"):
             return
         os.system('cls')
 
